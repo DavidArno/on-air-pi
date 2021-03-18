@@ -45,7 +45,9 @@ namespace OnAirTeamsClient
             microphoneClientControl.OnDeviceChanged();
             webcamClientControl.OnDeviceChanged();
 
+            
             Application.Run(iconManager);
+            
         }
 
         private static void ShowAlreadyRunningMessage()

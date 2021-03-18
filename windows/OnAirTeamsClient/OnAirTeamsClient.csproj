@@ -6,6 +6,7 @@
     <TargetFramework>net40</TargetFramework>
     <LangVersion>8</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,13 +15,6 @@
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="icons\camera-on.ico" />
-    <Resource Include="icons\connected.ico" />
-    <Resource Include="icons\disconnected.ico" />
-    <Resource Include="icons\microphone-on.ico" />
   </ItemGroup>
 
   <ItemGroup>

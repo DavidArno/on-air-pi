@@ -63,9 +63,9 @@ namespace OnAirTeamsClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon CameraOnIcon {
+        internal static System.Drawing.Icon CameraOnDark {
             get {
-                object obj = ResourceManager.GetObject("CameraOnIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("CameraOnDark", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace OnAirTeamsClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon ConnectedIcon {
+        internal static System.Drawing.Icon CameraOnLight {
             get {
-                object obj = ResourceManager.GetObject("ConnectedIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("CameraOnLight", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace OnAirTeamsClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon DisconnectedIcon {
+        internal static System.Drawing.Icon ConnectedDark {
             get {
-                object obj = ResourceManager.GetObject("DisconnectedIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("ConnectedDark", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -93,9 +93,49 @@ namespace OnAirTeamsClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon MicrophoneOnIcon {
+        internal static System.Drawing.Icon ConnectedLight {
             get {
-                object obj = ResourceManager.GetObject("MicrophoneOnIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("ConnectedLight", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DisconnectedDark {
+            get {
+                object obj = ResourceManager.GetObject("DisconnectedDark", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DisconnectedLight {
+            get {
+                object obj = ResourceManager.GetObject("DisconnectedLight", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon MicrophoneOnDark {
+            get {
+                object obj = ResourceManager.GetObject("MicrophoneOnDark", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon MicrophoneOnLight {
+            get {
+                object obj = ResourceManager.GetObject("MicrophoneOnLight", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

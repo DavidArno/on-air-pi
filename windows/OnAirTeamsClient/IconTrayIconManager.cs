@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using OnAirTeamsClient.Properties;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using static OnAirTeamsClient.IStatusNotifier.Statuses;
 
@@ -11,13 +12,29 @@ namespace OnAirTeamsClient
     {
         private const string AutoRunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
         private const string HkcuAutoRunKey = @"HKEY_CURRENT_USER\" + AutoRunKey;
+        private const string HkcuPersonalizeKey = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize";
+
         private const string AppName = "OnAirTeamsClient";
 
         private enum IconState { Disconnected, Connected, MicrophoneOn, WebcamOn }
 
-        private readonly NotifyIcon _trayIcon;
+        private static readonly Icon[] DarkModeIcons = {
+            Resources.DisconnectedDark,
+            Resources.ConnectedDark,
+            Resources.MicrophoneOnDark,
+            Resources.CameraOnDark
+        };
 
-        //private int _animationFrame;
+        private static readonly Icon[] LightModeIcons = {
+            Resources.DisconnectedLight,
+            Resources.ConnectedLight,
+            Resources.MicrophoneOnLight,
+            Resources.CameraOnLight
+        };
+
+        private readonly NotifyIcon _trayIcon;
+        private readonly Icon[] _windowsModeIconSet;
+
         private bool _serverConnected;
         private bool _microphoneOn;
         private bool _webcamOn;
@@ -25,20 +42,23 @@ namespace OnAirTeamsClient
         private IconState _iconState;
         private IconState _lastIconState;
 
+
         public IconTrayIconManager()
         {
-            _trayIcon = new NotifyIcon()
-            {
-                Icon = Resources.DisconnectedIcon,
+            var lightThemeValue = (int)Registry.GetValue(HkcuPersonalizeKey, "SystemUsesLightTheme", 0);
+            _windowsModeIconSet = lightThemeValue == 0 ? DarkModeIcons : LightModeIcons;
+            
+            _trayIcon = new NotifyIcon() {
+                Icon = Resources.DisconnectedDark,
                 ContextMenu = GenerateContextMenu(),
                 Visible = true
             };
 
-            new Timer
-            {
+            new Timer {
                 Interval = 500,
                 Enabled = true
             }.Tick += AnimationTimerTick;
+
         }
 
         private ContextMenu GenerateContextMenu()
@@ -81,7 +101,7 @@ namespace OnAirTeamsClient
             UpdateIconState();
         }
 
-        private bool AppIsSetToAutoRun() => Registry.GetValue(HkcuAutoRunKey, AppName, null) != null;
+        private static bool AppIsSetToAutoRun() => Registry.GetValue(HkcuAutoRunKey, AppName, null) != null;
 
         private void SetAppToAutoRun(object sender, EventArgs e)
         {
@@ -103,41 +123,28 @@ namespace OnAirTeamsClient
             Application.Exit();
         }
 
-        private void MicrophoneOff(object sender, EventArgs e)
-        {
-            SetMicrophoneOff?.Invoke();
-        }
+        private void MicrophoneOff(object sender, EventArgs e) => SetMicrophoneOff?.Invoke();
 
-        private void MicrophoneOn(object sender, EventArgs e)
-        {
-            SetMicrophoneOn?.Invoke();
-        }
+        private void MicrophoneOn(object sender, EventArgs e) => SetMicrophoneOn?.Invoke();
 
-        private void WebcamOff(object sender, EventArgs e)
-        {
-            SetWebcamOff?.Invoke();
-        }
+        private void WebcamOff(object sender, EventArgs e) => SetWebcamOff?.Invoke();
 
-        private void WebcamOn(object sender, EventArgs e)
-        {
-            SetWebcamOn?.Invoke();
-        }
+        private void WebcamOn(object sender, EventArgs e) => SetWebcamOn?.Invoke();
 
         private void AnimationTimerTick(object sender, EventArgs e)
         {
-            if (_iconState != _lastIconState)
-            {
-                _lastIconState = _iconState;
+            if (_iconState == _lastIconState) return;
 
-                _trayIcon.Icon = _iconState switch {
-                    IconState.Disconnected => Resources.DisconnectedIcon,
-                    IconState.Connected => Resources.ConnectedIcon,
-                    IconState.MicrophoneOn => Resources.MicrophoneOnIcon,
-                    _ => Resources.CameraOnIcon
-                };
+            _lastIconState = _iconState;
 
-                _trayIcon.ContextMenu = GenerateContextMenu();
-            }
+            _trayIcon.Icon = _iconState switch {
+                IconState.Disconnected => _windowsModeIconSet[0],
+                IconState.Connected => _windowsModeIconSet[1],
+                IconState.MicrophoneOn => _windowsModeIconSet[2],
+                _ => _windowsModeIconSet[3]
+            };
+
+            _trayIcon.ContextMenu = GenerateContextMenu();
         }
 
         private void UpdateIconState() 

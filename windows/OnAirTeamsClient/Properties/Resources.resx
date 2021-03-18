@@ -118,16 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CameraOnIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\camera-on.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CameraOnDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\camera-on-dark.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConnectedIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\connected.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CameraOnLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\camera-on-light.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DisconnectedIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\disconnected.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ConnectedDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\connected-dark.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MicrophoneOnIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\microphone-on.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ConnectedLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\connected-light.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DisconnectedDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\disconnected-dark.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DisconnectedLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\disconnected-light.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MicrophoneOnDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\microphone-on-dark.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MicrophoneOnLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\microphone-on-light.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
