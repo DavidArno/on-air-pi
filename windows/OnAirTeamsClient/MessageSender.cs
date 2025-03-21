@@ -39,7 +39,7 @@ namespace OnAirTeamsClient
             if (_remoteEndpoint != null) return;
 
             var ipHostInfo = Dns.GetHostEntry(_hostname);
-            var ipAddress = ipHostInfo.AddressList[1];
+            var ipAddress = ipHostInfo.AddressList[0];
             _remoteEndpoint = new IPEndPoint(ipAddress, _port);
             _addressFamily = ipAddress.AddressFamily;
         }

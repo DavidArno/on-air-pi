@@ -31,7 +31,7 @@ namespace OnAirTeamsClient
         private const int StandardRightsRead = 0x00020000;
         private const int RegChangeNotifyFilterOnValue = 4;
 
-        private static readonly IntPtr HkCurrentUser = new IntPtr(unchecked((int) 0x80000001));
+        private static readonly IntPtr HkCurrentUser = new IntPtr(unchecked((int)0x80000001));
 
 
         private readonly string _registrySubName;
@@ -49,7 +49,7 @@ namespace OnAirTeamsClient
             _notifyOfValueChange = notifier.OnDeviceChanged;
 
             _eventTerminate.Reset();
-            _thread = new Thread(MonitorThread) {IsBackground = true};
+            _thread = new Thread(MonitorThread) { IsBackground = true };
             _thread.Start();
         }
 
@@ -94,7 +94,7 @@ namespace OnAirTeamsClient
             try
             {
                 var eventNotify = new AutoResetEvent(false);
-                var waitHandles = new WaitHandle[] {eventNotify, _eventTerminate};
+                var waitHandles = new WaitHandle[] { eventNotify, _eventTerminate };
 
                 while (!_eventTerminate.WaitOne(0, true))
                 {
