@@ -38,11 +38,11 @@ internal sealed class MessageSender
     {
         if (_remoteEndpoint != null) return;
 
-        var ipHostInfo = Dns.GetHostEntry(_hostname);
-        var ipAddress = ipHostInfo.AddressList[1];
-        _remoteEndpoint = new IPEndPoint(ipAddress, _port);
-        _addressFamily = ipAddress.AddressFamily;
-    }
+            var ipHostInfo = Dns.GetHostEntry(_hostname);
+            var ipAddress = ipHostInfo.AddressList[0];
+            _remoteEndpoint = new IPEndPoint(ipAddress, _port);
+            _addressFamily = ipAddress.AddressFamily;
+        }
 
     private void SendMessageLoop()
     {

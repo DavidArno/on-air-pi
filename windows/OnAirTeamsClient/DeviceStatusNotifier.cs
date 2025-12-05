@@ -1,5 +1,7 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using static OnAirTeamsClient.IStatusNotifier.Statuses;
 
 namespace OnAirTeamsClient
@@ -8,18 +10,18 @@ namespace OnAirTeamsClient
     {
         private readonly string _device;
         private readonly MessageSender _messageSender;
-        private readonly RegistryKey _registryKey;
+        private readonly List<RegistryKey> _registryKeys;
         private readonly Action<IStatusNotifier.Statuses> _localStatusNotifier;
 
         internal DeviceStatusNotifier(
-            string device, 
-            MessageSender messageSender, 
-            string key,
+            string device,
+            MessageSender messageSender,
+            IEnumerable<string> keys,
             Action<IStatusNotifier.Statuses> localStatusNotifier)
         {
             _device = device;
             _messageSender = messageSender;
-            _registryKey = Registry.CurrentUser.OpenSubKey(key);
+            _registryKeys = keys.Select(key => Registry.CurrentUser.OpenSubKey(key)).ToList();
             _localStatusNotifier = localStatusNotifier;
         }
 
@@ -35,17 +37,24 @@ namespace OnAirTeamsClient
             _localStatusNotifier(Off);
         }
 
-        public void Dispose() => _registryKey.Dispose();
+        public void Dispose()
+        {
+            foreach (var key in _registryKeys)
+            {
+                key.Dispose();
+            }
+        }
 
         internal void OnDeviceChanged()
         {
             var (messageSuffix, status) = IsDeviceInUse() ? ("on", On) : ("off", Off);
 
             SendMessage(messageSuffix);
-            _localStatusNotifier(status); 
+            _localStatusNotifier(status);
         }
 
-        private bool IsDeviceInUse() => _registryKey?.GetValue("LastUsedTimeStop") is long value && value == 0;
+        private bool IsDeviceInUse()
+            => _registryKeys.Any(key => key.GetValue("LastUsedTimeStop") is long value && value == 0);
 
         private void SendMessage(string messageSuffix) => _messageSender.SendMessage($"{_device}:{messageSuffix}");
     }
